@@ -28,6 +28,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.codelab.basics.ui.theme.BasicsCodelabTheme
@@ -91,13 +92,15 @@ private fun Greeting(name: String) {
                     .padding(bottom = extraPadding.coerceAtLeast(0.dp))
             ) {
                 Text(text = "Hello")
-                Text(text = name)
+                Text(
+                    text = name,
+                    style = MaterialTheme.typography.h5.copy(
+                        fontWeight = FontWeight.ExtraBold
+                    )
+                )
             }
             Button(
                 shape = CircleShape,
-                colors = ButtonDefaults.buttonColors(
-                    backgroundColor = Color.White
-                ),
                 onClick = { expanded = !expanded }) {
                 val text = if (expanded) {
                     "Show less"
@@ -107,6 +110,22 @@ private fun Greeting(name: String) {
                 Text(text)
             }
         }
+    }
+}
+
+@Preview(
+    widthDp = 320,
+    name = "Light Mode"
+)
+@Preview(
+    widthDp = 320,
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    name = "Dark Mode"
+)
+@Composable
+private fun GreetingPreview() {
+    BasicsCodelabTheme{
+        Greeting("Hello")
     }
 }
 
