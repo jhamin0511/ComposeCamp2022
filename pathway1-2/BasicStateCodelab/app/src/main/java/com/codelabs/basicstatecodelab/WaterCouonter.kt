@@ -19,14 +19,13 @@ import com.codelabs.basicstatecodelab.ui.theme.BasicStateCodelabTheme
 
 @Composable
 fun WaterCounter(modifier: Modifier = Modifier) {
-
     Column(modifier = modifier.padding(16.dp)) {
-        var count by rememberSaveable{ mutableStateOf(0) }
+        var count by rememberSaveable { mutableStateOf(0) }
 
         if (count > 0) {
             var showTask by rememberSaveable { mutableStateOf(true) }
 
-            if(showTask) {
+            if (showTask) {
                 WellnessTaskItem(
                     name = "Have you taken your 15 minute walk today?",
                     onClose = { showTask = false })
@@ -52,10 +51,61 @@ fun WaterCounter(modifier: Modifier = Modifier) {
     }
 }
 
+
 @Preview
 @Composable
 fun WaterCounterPreview() {
     BasicStateCodelabTheme {
         WaterCounter()
+    }
+}
+
+@Composable
+fun StatelessCounter(
+    count: Int,
+    onIncrement: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier.padding(16.dp)
+    ) {
+        if (count > 0) {
+            Text(text = "You've had $count glasses.")
+        }
+        Button(
+            onClick = onIncrement,
+            modifier = Modifier.padding(top = 8.dp),
+            enabled = count < 10
+        ) {
+            Text("Add one")
+        }
+    }
+}
+
+@Preview
+@Composable
+fun StatelessCounterPreview() {
+    BasicStateCodelabTheme {
+        var count by remember { mutableStateOf(0) }
+        StatelessCounter(count = count, onIncrement = { count++ })
+    }
+}
+
+@Composable
+fun StatefulCounter(
+    modifier: Modifier = Modifier
+) {
+    var count by remember { mutableStateOf(0) }
+    Column(modifier = modifier){
+        StatelessCounter(count, { count++ })
+        StatelessCounter(count, { count++ })
+    }
+}
+
+@Preview
+@Composable
+fun StatefulCounterPreview() {
+    BasicStateCodelabTheme {
+        StatefulCounter()
     }
 }
