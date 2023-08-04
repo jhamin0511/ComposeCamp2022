@@ -26,9 +26,7 @@ fun WaterCounter(modifier: Modifier = Modifier) {
             var showTask by rememberSaveable { mutableStateOf(true) }
 
             if (showTask) {
-                WellnessTaskItem(
-                    name = "Have you taken your 15 minute walk today?",
-                    onClose = { showTask = false })
+                WellnessTaskItem(taskName = "Have you taken your 15 minute walk today?")
             }
 
             Text(text = "You've had $count glasses.")
@@ -74,6 +72,7 @@ fun StatelessCounter(
         }
         Button(
             onClick = onIncrement,
+            shape = CircleShape,
             modifier = Modifier.padding(top = 8.dp),
             enabled = count < 10
         ) {
@@ -96,8 +95,7 @@ fun StatefulCounter(
     modifier: Modifier = Modifier
 ) {
     var count by remember { mutableStateOf(0) }
-    Column(modifier = modifier){
-        StatelessCounter(count, { count++ })
+    Column(modifier = modifier) {
         StatelessCounter(count, { count++ })
     }
 }
