@@ -6,30 +6,27 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.codelabs.basicstatecodelab.ui.theme.BasicStateCodelabTheme
 
-private fun getWellnessTasks() = List(30) { i -> WellnessTask(i, "Task # $i") }
+fun getWellnessTasks() = List(30) { i -> WellnessTask(i, "Task # $i") }
 
 @Composable
 fun WellnessTasksList(
     modifier: Modifier = Modifier,
-    list: List<WellnessTask> = remember { getWellnessTasks() }
+    list: List<WellnessTask> = remember { getWellnessTasks() },
+    onCloseTask: (WellnessTask) -> Unit
 ) {
     LazyColumn(
         modifier = modifier,
         state = rememberLazyListState()
     ) {
-        items(list) {
-            WellnessTaskItem(taskName = it.label)
+        items(
+            items = list,
+            key = { it.id }
+        ) {
+            WellnessTaskItem(
+                taskName = it.label,
+                onClose = { onCloseTask(it) }
+            )
         }
-    }
-}
-
-@Preview
-@Composable
-fun WellnessTasksListPreview() {
-    BasicStateCodelabTheme {
-        WellnessTasksList()
     }
 }

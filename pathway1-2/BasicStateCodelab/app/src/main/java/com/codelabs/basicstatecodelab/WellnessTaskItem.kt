@@ -15,14 +15,13 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.codelabs.basicstatecodelab.ui.theme.BasicStateCodelabTheme
 
 @Composable
 fun WellnessTaskItem(
     taskName: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onClose: () -> Unit
 ) {
     var checkedState by rememberSaveable { mutableStateOf(false) }
 
@@ -30,7 +29,7 @@ fun WellnessTaskItem(
         taskName = taskName,
         checked = checkedState,
         onCheckedChange = { checkedState = it },
-        onClose = { },
+        onClose = onClose,
         modifier = modifier
     )
 }
@@ -63,13 +62,5 @@ fun WellnessTaskItem(
                 contentDescription = "Close"
             )
         }
-    }
-}
-
-@Preview
-@Composable
-fun WellnessTaskItemPreview() {
-    BasicStateCodelabTheme {
-        WellnessTaskItem(taskName = "WellnessTaskItem")
     }
 }
