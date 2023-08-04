@@ -7,6 +7,10 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -16,7 +20,7 @@ import com.codelabs.basicstatecodelab.ui.theme.BasicStateCodelabTheme
 fun WaterCounter(modifier: Modifier = Modifier) {
 
     Column(modifier = modifier.padding(16.dp)) {
-        var count = 0
+        var count by remember { mutableStateOf(0) }
         Text(text = "You've had $count glasses.")
         Button(
             onClick = { count++ },
@@ -27,8 +31,7 @@ fun WaterCounter(modifier: Modifier = Modifier) {
     }
 }
 
-@Preview(name = "Light Mode")
-@Preview(name = "Dark Mode", uiMode = UI_MODE_NIGHT_NO)
+@Preview
 @Composable
 fun WaterCounterPreview() {
     BasicStateCodelabTheme {
