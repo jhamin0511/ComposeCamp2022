@@ -22,7 +22,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
@@ -50,7 +49,7 @@ fun ReplyEmailThreadItem(
             .fillMaxWidth()
             .padding(16.dp)
             .padding(20.dp)
-            .background(MaterialTheme.colorScheme.background)
+            .background(MaterialTheme.colorScheme.background, MaterialTheme.shapes.medium)
     ) {
         Row(modifier = Modifier.fillMaxWidth()) {
             ReplyProfileImage(

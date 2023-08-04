@@ -60,7 +60,8 @@ fun ReplyEmailListItem(
             } else {
                 MaterialTheme.colorScheme.surfaceVariant
             }
-        )
+        ),
+        shape = MaterialTheme.shapes.medium
     ) {
         Column(
             modifier = Modifier

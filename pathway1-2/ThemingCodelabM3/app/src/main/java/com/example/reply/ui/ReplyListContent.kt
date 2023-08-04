@@ -73,7 +73,8 @@ fun ReplyInboxScreen(
                 .align(Alignment.BottomEnd)
                 .padding(16.dp),
             containerColor = MaterialTheme.colorScheme.tertiaryContainer,
-            contentColor = MaterialTheme.colorScheme.onTertiaryContainer
+            contentColor = MaterialTheme.colorScheme.onTertiaryContainer,
+            shape = MaterialTheme.shapes.large
         ) {
             Icon(
                 imageVector = Icons.Default.Edit,
