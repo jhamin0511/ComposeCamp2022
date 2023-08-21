@@ -22,8 +22,11 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -50,13 +53,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import coil.annotation.ExperimentalCoilApi
 import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
-import coil.compose.rememberImagePainter
-import coil.request.ImageRequest
 import coil.request.ImageRequest.Builder
-import com.google.accompanist.insets.navigationBarsHeight
+
 
 @Composable
 fun ExploreSection(
@@ -87,7 +87,11 @@ private fun ExploreList(
     modifier: Modifier = Modifier,
     listState: LazyListState = rememberLazyListState()
 ) {
-    LazyColumn(modifier = modifier, state = listState) {
+    LazyColumn(
+        modifier = modifier,
+        contentPadding = WindowInsets.navigationBars.asPaddingValues(),
+        state = listState
+    ) {
         items(exploreList) { exploreItem ->
             Column(Modifier.fillParentMaxWidth()) {
                 ExploreItem(
@@ -98,13 +102,9 @@ private fun ExploreList(
                 Divider(color = crane_divider_color)
             }
         }
-        item {
-            Spacer(modifier = Modifier.navigationBarsHeight())
-        }
     }
 }
 
-@OptIn(ExperimentalCoilApi::class)
 @Composable
 private fun ExploreItem(
     modifier: Modifier = Modifier,
