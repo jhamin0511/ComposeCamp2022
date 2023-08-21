@@ -21,6 +21,7 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.animateColor
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.FastOutLinearInEasing
 import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.RepeatMode
@@ -669,7 +670,8 @@ private fun TaskRow(task: String, onRemove: () -> Unit) {
 private fun Modifier.swipeToDismiss(
     onDismissed: () -> Unit
 ): Modifier = composed {
-    // TODO 6-1: Create an Animatable instance for the offset of the swiped element.
+    val offsetX = remember { Animatable(0f) } // Add this line
+    // used to receive user touch events
     pointerInput(Unit) {
         // Used to calculate a settling position of a fling animation.
         val decay = splineBasedDecay<Float>(this)
