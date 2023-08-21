@@ -120,6 +120,7 @@ import com.example.android.codelab.animation.ui.Green800
 import com.example.android.codelab.animation.ui.Purple100
 import com.example.android.codelab.animation.ui.Purple700
 import kotlin.math.absoluteValue
+import kotlin.math.roundToInt
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -726,8 +727,7 @@ private fun Modifier.swipeToDismiss(
         }
     }
         .offset {
-            // TODO 6-7: Use the animating offset value here.
-            IntOffset(0, 0)
+            IntOffset(offsetX.value.roundToInt(), 0)
         }
 }
 
